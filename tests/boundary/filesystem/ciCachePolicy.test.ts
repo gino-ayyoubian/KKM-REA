@@ -418,12 +418,12 @@ it("shares static task snapshots only after validation using the npm cache owner
     (step) => step.name === "Save validated static task cache",
   );
   expect(restore?.uses).toBe(
-    "actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830",
+    "actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
   );
   expect(restore?.if).toBe("needs.changes.outputs.code == 'true'");
   expect(restore?.with).toMatchObject({ path: ".turbo/cache/" });
   expect(save?.uses).toBe(
-    "actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830",
+    "actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
   );
   expect(save?.if).toContain("success()");
   expect(save?.if).toContain("steps.npm-cache.outputs.can-save == 'true'");
@@ -443,7 +443,7 @@ it("shares static task snapshots only after validation using the npm cache owner
     (step) => step.name === "Save Knip analysis cache",
   );
   expect(deepSave?.uses).toBe(
-    "actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830",
+    "actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
   );
   expect(deepSave?.if).toContain("success()");
   expect(deepSave?.if).toContain("steps.npm-cache.outputs.can-save == 'true'");
@@ -540,7 +540,7 @@ it("deletes superseded caches only from the trusted follow-up workflow", async (
   expect(steps.some((step) => step.run === "npm ci")).toBe(false);
   const checkouts = steps.filter(
     (step) =>
-      step.uses === "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      step.uses === "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
   );
   const trustedCheckout = checkouts[0];
   expect(trustedCheckout?.with).toMatchObject({
@@ -559,7 +559,7 @@ it("deletes superseded caches only from the trusted follow-up workflow", async (
   const setupNode = steps.find(
     (step) =>
       step.uses ===
-      "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+      "actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
   );
   expect(setupNode?.with).toMatchObject({
     "node-version-file": "trusted-retention/.nvmrc",
